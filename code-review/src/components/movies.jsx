@@ -5,7 +5,7 @@ import page2 from '../data/page2.txt';
 import page3 from '../data/page3.txt';
 import page4 from '../data/page4.txt';
 
-class Movies extends Component {
+class Pages extends Component {
     state = {
         movies: [
             { title: 'example.txt' },
@@ -95,6 +95,6 @@ class Movies extends Component {
     }
 }
 
-export default Movies;
+export default Pages;
 
 

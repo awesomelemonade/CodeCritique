@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import auth from './services/authService';
-import Movies from './components/movies';
+import Pages from './components/movies';
 
 
 
@@ -18,7 +18,7 @@ function App() {
     return (
         <React.Fragment>
             <main className="container">
-                <Movies />
+                <Pages />
             </main>
         </React.Fragment>
     );
