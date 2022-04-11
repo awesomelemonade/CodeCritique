@@ -7,7 +7,7 @@ import page4 from '../data/page4.txt';
 
 class Pages extends Component {
     state = {
-        movies: [
+        pages: [
             { title: 'example.txt' },
             { title: 'page1.txt' },
             { title: 'page2.txt' },
@@ -18,39 +18,39 @@ class Pages extends Component {
         code: ["example code"]
     }
 
-    handleMovieSelect = (selection) => {
+    handlepageselect = (selection) => {
 
         switch (selection) {
             case 'page1.txt':
                 fetch(page1)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ movies: this.state.movies, selection: selection, code: text.split("\n") })
+                        this.setState({ pages: this.state.pages, selection: selection, code: text.split("\n") })
                     });
                 break;
             case 'page2.txt':
                 fetch(page2)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ movies: this.state.movies, selection: selection, code: text.split("\n") })
+                        this.setState({ pages: this.state.pages, selection: selection, code: text.split("\n") })
                     });
                 break;
             case 'page3.txt':
                 fetch(page3)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ movies: this.state.movies, selection: selection, code: text.split("\n") })
+                        this.setState({ pages: this.state.pages, selection: selection, code: text.split("\n") })
                     });
                 break;
             case 'page4.txt':
                 fetch(page4)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ movies: this.state.movies, selection: selection, code: text.split("\n") })
+                        this.setState({ pages: this.state.pages, selection: selection, code: text.split("\n") })
                     });
                 break;
             default:
-                this.setState({ movies: this.state.movies, selection: "example.txt", code: ["example code"] })
+                this.setState({ pages: this.state.pages, selection: "example.txt", code: ["example code"] })
         }
 
         console.log(this.state.code);
@@ -60,7 +60,7 @@ class Pages extends Component {
     }
 
     render() {
-        const currentPage = this.state.movies.find(element => {
+        const currentPage = this.state.pages.find(element => {
             return element.title === this.state.selection;
         })
 
@@ -73,7 +73,7 @@ class Pages extends Component {
                 <div className="row">
 
                     <div className="col-2">
-                        <ListGroup items={this.state.movies} onItemSelect={(selection) => this.handleMovieSelect(selection)} />
+                        <ListGroup items={this.state.pages} onItemSelect={(selection) => this.handleMovieSelect(selection)} />
                     </div>
 
                     <div className="col">
