@@ -18,7 +18,7 @@ class Pages extends Component {
         code: ["example code"]
     }
 
-    handlepageselect = (selection) => {
+    handlePageSelect = (selection) => {
 
         switch (selection) {
             case 'page1.txt':
@@ -73,7 +73,7 @@ class Pages extends Component {
                 <div className="row">
 
                     <div className="col-2">
-                        <ListGroup items={this.state.pages} onItemSelect={(selection) => this.handleMovieSelect(selection)} />
+                        <ListGroup items={this.state.pages} onItemSelect={(selection) => this.handlePageSelect(selection)} />
                     </div>
 
                     <div className="col">
