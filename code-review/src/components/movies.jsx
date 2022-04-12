@@ -6,6 +6,9 @@ import page3 from '../data/page3.txt';
 import page4 from '../data/page4.txt';
 
 class Pages extends Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         pages: [
             { title: 'example.txt', comment: '' },
@@ -57,24 +60,16 @@ class Pages extends Component {
         }
     }
 
-    handleCommentChange = event => {
-        const input = event.target.value;
-        this.setState({ ...this.state, pages: this.state.pages.map(p => (p.title === this.state.selection ? { ...p, comment: input } : p)), comment: input });
-    }
 
     render() {
         const currentPage = this.state.pages.find(element => {
             return element.title === this.state.selection;
         })
-
-
-
         return (
             <React.Fragment>
                 <div style={{ marginTop: 50 }} />
 
                 <div className="row">
-
                     <div className="col-2">
                         <ListGroup items={this.state.pages} onItemSelect={(selection) => this.handlePageSelect(selection)} />
                     </div>
@@ -85,21 +80,35 @@ class Pages extends Component {
                         {/* duplicate keys can be a problem  */}
 
                         <h2>COMMENTS:</h2>
-                        <input type="text" style={{ width: "800px" }} value={this.state.comment} onChange={this.handleCommentChange}></input>
-
+                        <Comment />
+                        <CommentInput comment={this.state.comment} />
                     </div>
-
-
                 </div>
-
-
             </React.Fragment>
-
-
-
         );
     }
 }
+
+function Comment(props) {
+    return (
+        <div>
+        </div>
+    );
+}
+
+function CommentInput(props) {
+    /*handleCommentChange = event => {
+        const input = event.target.value;
+        this.setState({ ...this.state, pages: this.state.pages.map(p => (p.title === this.state.selection ? { ...p, comment: input } : p)), comment: input });
+    }*/
+    return (
+        <div>
+            {/*<input type="text" style={{ width: "800px" }} value={this.state.comment} onChange={this.handleCommentChange}></input>*/}
+            <input type="text" style={{ width: "800px" }} value={props.comment}></input>
+        </div>
+    );
+}
+
 
 export default Pages;
 
