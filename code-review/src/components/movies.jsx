@@ -61,6 +61,11 @@ class Pages extends Component {
         }
     }
 
+    handleCommentChange = event => {
+        const input = event.target.value;
+        this.setState({ ...this.state, pages: this.state.pages.map(p => (p.title === this.state.selection ? { ...p, comment: input } : p)), comment: input });
+    }
+
 
     render() {
         const currentPage = this.state.pages.find(element => {
@@ -75,7 +80,7 @@ class Pages extends Component {
 
                 <div className="row">
                     <div className="col-2">
-                        <ListGroup items={this.state.pages} onItemSelect={(selection) => this.handlePageSelect(selection)} />
+                        <ListGroup items={this.state.pages} selection={this.state.selection} onItemSelect={(selection) => this.handlePageSelect(selection)} />
                     </div>
 
                     <div className="col">
@@ -91,8 +96,9 @@ class Pages extends Component {
                         />
 
                         <h2>COMMENTS:</h2>
-                        <Comment />
-                        <CommentInput comment={this.state.comment} />
+                        <input type="text" style={{ width: "800px" }} value={this.state.comment} onChange={this.handleCommentChange}></input>
+                        {/* <Comment />
+                        <CommentInput comment={this.state.comment} /> */}
                     </div>
                 </div>
             </React.Fragment>
