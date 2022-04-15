@@ -1,3 +1,4 @@
+import { CodeBlock, CopyBlock, nord } from 'react-code-blocks'
 import React, { Component } from 'react';
 import ListGroup from './common/listGroup';
 import page1 from '../data/page1.txt';
@@ -31,32 +32,32 @@ class Pages extends Component {
                 fetch(page1)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), comment: page.comment })
+                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), rawCode: text, comment: page.comment })
                     });
                 break;
             case 'page2.txt':
                 fetch(page2)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), comment: page.comment })
+                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), rawCode: text, comment: page.comment })
                     });
                 break;
             case 'page3.txt':
                 fetch(page3)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), comment: page.comment })
+                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), rawCode: text, comment: page.comment })
                     });
                 break;
             case 'page4.txt':
                 fetch(page4)
                     .then(r => r.text())
                     .then(text => {
-                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), comment: page.comment })
+                        this.setState({ ...this.state, selection: selection, code: text.split("\n"), rawCode: text, comment: page.comment })
                     });
                 break;
             default:
-                this.setState({ ...this.state, selection: "example.txt", code: ["example code"], comment: "example comment" })
+                this.setState({ ...this.state, selection: "example.txt", code: ["example code"], rawCode: "example code", comment: "example comment" })
         }
     }
 
@@ -65,6 +66,9 @@ class Pages extends Component {
         const currentPage = this.state.pages.find(element => {
             return element.title === this.state.selection;
         })
+        if (this.state.rawCode === undefined) {
+            this.state.rawCode = "undefined";
+        }
         return (
             <React.Fragment>
                 <div style={{ marginTop: 50 }} />
@@ -76,8 +80,15 @@ class Pages extends Component {
 
                     <div className="col">
                         <h1>{currentPage.title}</h1>
-                        {this.state.code.map(line => <h6 key={Math.random()}>{line}</h6>)}
+                        {/*this.state.code.map(line => <h6 key={Math.random()}>{line}</h6>)*/}
                         {/* duplicate keys can be a problem  */}
+                        <CopyBlock
+                            text={this.state.rawCode}
+                            theme={nord}
+                            language="javascript"
+                            wrapLines
+                            codeBlock
+                        />
 
                         <h2>COMMENTS:</h2>
                         <Comment />
